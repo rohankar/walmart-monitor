@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>API Walmart</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+   
+  </head>
+  <body>
+    <center><h1>Simple API Runner</h1><center>
+
+    <p id="para" text-align: center >List of Major US Cities</p><br> &nbsp;
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap.min.js"></script>
+   
+   <?php
+    //connect to mysql db
+     $username = "";
+    $password = "";
+    $host = "";
+    $database="";
+    $con = mysql_connect(localhost,$username,$password) or die('Could not connect: ' . mysql_error());
+    //connect to the employee database
+    /*mysql_select_db("walmart", $con);*/
+
+    @mysql_select_db($database) or die( "Unable to select database");
+
+    $cities = array{ "New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Phoenix", "San Antonio", "San Diego"," Dallas"," San Jose", "Austin", "Indianapolis", "Jacksonville", "San Francisco", "Columbus", "Charlotte", "Fort Worth", "Detroit", "El Paso", "Memphis", "Seattle", "Denver", "Washington DC", "Boston", "Nashville-Davidson", "Baltimore", "Oklahoma City", "Louisville-Jefferson County", "Portland", "Las Vegas", "Milwaukee", "Albuquerque", "Tucson", "Fresno", "Sacramento", "Long Beach", "Kansas City", "Mesa", "Virginia Beach", "Atlanta", "Colorado Springs", "Omaha", "Raleigh", "Oakland", "Minneapolis", "Tulsa", "Cleveland", "Wichita", "Arlington" }
+/*
+    $arrlength = count($cities);
+
+    for($x = 0; $x <  $arrlength; $x++) {
+    $city_name=$cities[$x];*/
+   
+    //read the json file contents
+    $URL= 'http://api.walmartlabs.com/v1/stores?apiKey=&city=Houston&format=json';
+    //$URL= 'http://api.walmartlabs.com/v1/stores?apiKey&city='.$city_name.'&format=json';
+    $jsonResult=file_get_contents($URL);
+    echo $jsonResult;
+    
+    //convert json object to php associative array
+    $result=json_decode($jsonResult,true);
+    
+    //get the employee details
+    $s_no = $result['no'];
+    $name = $result['name'];
+    $country = $result['country'];
+    $lat = $result['coordinates'][0];
+    $long = $result['coordinates'][1];
+    $address = $result['streetAddress'];
+    $state = $result['stateProvCode'];
+    $city = $result['city'];
+    $zip = $result['zip'];
+    $phone = $result['phoneNumber'];
+    $sunday_open = $result['sundayOpen'];
+    $timezones = $result['timezone'];
+    
+    //insert into mysql table
+    $sql = "INSERT INTO stores(s_no,name,country,lat,long,address,city,state_code,zip,phone,sunday_open,timezones)
+    VALUES('$id', '$name', '$country', '$lat','$long', '$address', '$city', '$state', '$zip', '$phone', '$sunday_open','$timezones')";
+    if(!mysql_query($sql,$con))
+    {
+        die('Error : ' . mysql_error());
+    }
+    echo "Coppied to database sucessfully";
+    sleep(5);
+    //throttle
+//}
+?>
+  
+ </body>
+</html>

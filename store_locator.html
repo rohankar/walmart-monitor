@@ -1,0 +1,64 @@
+<?php
+    $con = mysql_connect("username","password","") or die('Could not connect: ' . mysql_error());
+    mysql_select_db("employee", $con);
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>API Walmart</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+   
+  </head>
+  <body>
+    <center><h1>Simple API Runner</h1><center>
+
+    <p id="para" text-align: center >List of Major US Cities</p><br> &nbsp;
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+    var jason = [{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108570","text":"New York"},"population":"8,405,837"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108549","text":"Los Angeles"},"population":"3,884,307"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108493","text":"Chicago"},"population":"2,718,782"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108527","text":"Houston"},"population":"2,195,914"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108580","text":"Philadelphia"},"population":"1,553,165"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108583","text":"Phoenix"},"population":"1,513,367"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108597","text":"San Antonio"},"population":"1,409,019"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108600","text":"San Diego"},"population":"1,355,896"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108503","text":"Dallas"},"population":"1,257,676"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108606","text":"San Jose"},"population":"998,537"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108483","text":"Austin"},"population":"885,400"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108531","text":"Indianapolis"},"population":"843,393"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108536","text":"Jacksonville"},"population":"842,583"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108603","text":"San Francisco"},"population":"837,442"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108501","text":"Columbus"},"population":"822,553"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108490","text":"Charlotte"},"population":"792,862"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108517","text":"Fort Worth"},"population":"792,727"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108509","text":"Detroit"},"population":"688,701"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108513","text":"El Paso"},"population":"674,443"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108552","text":"Memphis"},"population":"653,450"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108609","text":"Seattle"},"population":"652,405"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108505","text":"Denver"},"population":"649,495"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108620","text":"Washington, DC"},"population":"646,449"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108487","text":"Boston"},"population":"645,966"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108564","text":"Nashville-Davidson"},"population":"634,464"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108485","text":"Baltimore"},"population":"622,104"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108575","text":"Oklahoma City"},"population":"610,613"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0931883","text":"Louisville-Jefferson County"},"population":"609,893"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108588","text":"Portland"},"population":"609,456"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108543","text":"Las Vegas"},"population":"603,488"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108558","text":"Milwaukee"},"population":"599,164"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108479","text":"Albuquerque"},"population":"556,495"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108613","text":"Tucson"},"population":"526,116"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108520","text":"Fresno"},"population":"509,924"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108590","text":"Sacramento"},"population":"479,686/td>"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108546","text":"Long Beach"},"population":"469,428"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108539","text":"Kansas City"},"population":"467,007"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0779254","text":"Mesa"},"population":"457,587"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108617","text":"Virginia Beach"},"population":"448,479"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108481","text":"Atlanta"},"population":"447,841"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0302620","text":"Colorado Springs"},"population":"439,886"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108577","text":"Omaha"},"population":"434,353"},{"city":{"href":"http://www.infoplease.com/ce6/us/A0841031.html","text":"Raleigh"},"population":"431,746"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108554","text":"Miami"},"population":"417,650"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108573","text":"Oakland"},"population":"406,253"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108561","text":"Minneapolis"},"population":"400,070"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108615","text":"Tulsa"},"population":"398,121"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0108498","text":"Cleveland"},"population":"390,113"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0877666","text":"Wichita"},"population":"386,552"},{"city":{"href":"http://www.infoplease.com/cgi-bin/id/A0931874","text":"Arlington"},"population":"379,577"}]
+   
+
+    for(var l=0; l < jason.length; l++)
+    {
+
+      var city_name2 = jason[l].city.text;
+      console.log(jason[l].city.text);
+      /*document.getElementById("para").innerHTML +=  "<br>" + city_name2 + " " +  "<br>" ;*/
+    <?php
+
+    function Get_api_data($city_name2)
+       {
+        
+        /*$URL='https://maps.googleapis.com/maps/api/timezone/json?location='.$lat.','.$long.'&timestamp='.strtotime(Date('d-m-Y'));*/
+        $URL= 'http://api.walmartlabs.com/v1/stores?apiKey=7hbsnck6acm8sh2nr8w4m3pc&city='.$city_name2.'&format=json';
+        $jsonResult=file_get_contents($URL);
+        $result=json_decode($jsonResult,true);
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
+       }
+     ?>
+
+    }
+
+    
+    </script>
+  
+  
+ </body>
+</html>

@@ -32,8 +32,8 @@
 
     global $con;
     //read the json file contents
-    $URL= 'http://api.walmartlabs.com/v1/stores?apiKey=7hbsnck6acm8sh2nr8w4m3pc&city=' . $city_name . '&format=json';
-    //$URL= 'http://api.walmartlabs.com/v1/stores?apiKey=7hbsnck6acm8sh2nr8w4m3pc&city=newark&format=json';
+    $URL= 'http://api.walmartlabs.com/v1/stores?&city=' . $city_name . '&format=json';
+    //$URL= 'http://api.walmartlabs.com/v1/stores?&city=newark&format=json';
     $jsonResult=file_get_contents($URL);
     print_r( $jsonResult);
     //convert json object to php associative array
